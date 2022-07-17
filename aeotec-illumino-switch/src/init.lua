@@ -187,10 +187,7 @@ local driver_template = {
   supported_capabilities = {
     capabilities.switch,
     capabilities.switchLevel,
-    capabilities.refresh,
-    capabilities.button,
-    capabilities.energyMeter,
-    capabilities.powerMeter,
+    capabilities.refresh
   },
   lifecycle_handlers = {
     infoChanged = info_changed,

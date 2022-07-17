@@ -51,6 +51,34 @@ local DIMMER = {
   },
 }
 
+local SWITCH = {
+  PARAMETERS = {
+    powerRestore        = { type = 'config', parameter_number = 20, size = 1 },
+    offTimer            = { type = 'config', parameter_number = 40, size = 4 },
+    onTimer             = { type = 'config', parameter_number = 41, size = 4 },
+    instantStatusReport = { type = 'config', parameter_number = 80, size = 1 },
+    assnControlSettings = { type = 'config', parameter_number = 82, size = 1 },
+    ledIndicator        = { type = 'config', parameter_number = 83, size = 1 },
+    ledBrightness       = { type = 'config', parameter_number = 86, size = 1 },
+    ledColor            = { type = 'config', parameter_number = 84, size = 1 },
+    ledSceneColor       = { type = 'config', parameter_number = 85, size = 1 },
+    externalSwitchScene = { type = 'config', parameter_number = 119, size = 1 },
+    externalSwitchType  = { type = 'config', parameter_number = 120, size = 1 },
+    outputControl       = { type = 'config', parameter_number = 121, size = 1 },
+    buttonBehavior      = { type = 'config', parameter_number = 122, size = 1 },
+    reportBehavior      = { type = 'config', parameter_number = 123, size = 1 },
+    assocGroup1         = { type = 'assoc', group = 1, maxnodes = 5, addhub = false },
+    assocGroup2         = { type = 'assoc', group = 2, maxnodes = 5, addhub = false },
+    assocGroup3         = { type = 'assoc', group = 3, maxnodes = 5, addhub = false },
+    assocGroup4         = { type = 'assoc', group = 4, maxnodes = 5, addhub = false },
+    assocGroup5         = { type = 'assoc', group = 5, maxnodes = 5, addhub = false }
+  },
+  BUTTONS = {
+    count = 1,
+    values = { 'up', 'down', 'pushed', 'up_hold', 'down_hold', 'held', 'up_2x', 'down_2x', 'pushed_2x' },
+  },
+}
+
 local devices = {
   AEOTEC_ILLUMINO_DIMMER = {
     MATCHING_MATRIX = {
@@ -60,8 +88,18 @@ local devices = {
     },
     PARAMETERS = DIMMER.PARAMETERS,
     BUTTONS = DIMMER.BUTTONS,
+  },
+  AEOTEC_ILLUMINO_SWITCH = {
+    MATCHING_MATRIX = {
+      mfrs = { 0x0371 },
+      product_types = { 0x0103 },
+      product_ids = { 0x0026 },
+    },
+    PARAMETERS = SWITCH.PARAMETERS,
+    BUTTONS = SWITCH.BUTTONS,
   }
 }
+
 local preferences = {}
 
 preferences.get_device_parameters = function(zw_device)
