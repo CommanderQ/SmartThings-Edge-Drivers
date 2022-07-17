@@ -1,0 +1,7 @@
+zwaveManufacturer:
+  - id: "Aeotec/Illumino/Dimmer"
+    deviceLabel: Aeotec Illumino Dimmer Switch
+    manufacturerId: 0x0371
+    productType: 0x0103
+    productId: 0x0025
+    deviceProfileName: aeotec-illumino-dimmer

@@ -1,0 +1,319 @@
+name: aeotec-illumino-dimmer
+components:
+- id: main
+  capabilities:
+  - id: switch
+    version: 1
+  - id: switchLevel
+    version: 1
+  - id: refresh
+    version: 1
+  categories:
+  - name: Switch
+metadata:
+  deviceType: Switch
+  ocfDeviceType: oic.d.switch
+  deviceTypeId: Switch
+preferences:
+  - title: "Power Restore"
+    name: powerRestore
+    description: "The state of the switch after a power failure"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Off"
+        1: "On"
+        2: "Previous state"
+      default: 2
+  - title: "Auto-off Timer"
+    name: offTimer
+    description: "When the light is turned on, turn it off after X seconds (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 65535
+      default: 0
+  - title: "Auto-on Timer"
+    name: onTimer
+    description: "When the light is turned off, turn it on after X seconds (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 65535
+      default: 0
+  - title: "Instant Status Report"
+    name: instantStatusReport
+    description: "The command for status report"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Nothing"
+        1: "Basic report"
+        2: "Binary switch report"
+      default: 2
+  - title: "Association Control Settings"
+    name: assnControlSettings
+    description: "The setting command for association group"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        1: "Basic set"
+        2: "Binary switch set"
+      default: 1
+  - title: "LED Indicator"
+    name: ledIndicator
+    description: "The behavior of the LED indicator"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Momentary blink"
+        2: "Follows power state"
+      default: 2
+  - title: "LED Brightness"
+    name: ledBrightness
+    description: "The brightness (%) of the LED indicator (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 100
+      default: 60
+  - title: "LED Color"
+    name: ledColor
+    description: "The color of the LED indicator when the switch is on"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Red"
+        2: "Blue"
+        3: "Green"
+        4: "Pink"
+        5: "Cyan"
+        6: "Purple"
+        7: "Orange"
+        8: "Yellow"
+        9: "White"
+      default: 2
+  - title: "LED Scene Color"
+    name: ledSceneColor
+    description: "The color of the LED indicator when a scene is enabled"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Red"
+        2: "Blue"
+        3: "Green"
+        4: "Pink"
+        5: "Cyan"
+        6: "Purple"
+        7: "Orange"
+        8: "Yellow"
+        9: "White"
+      default: 2
+  - title: "Single Tap Behavior"
+    name: singleTapBehavior
+    description: "The behavior of the switch when the top button is tapped once"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Last brightness level"
+        1: "Custom dimming level"
+        2: "Maximum dimming level"
+        3: "Full brightness"
+      default: 0
+  - title: "Double Tap Behavior"
+    name: doubleTapBehavior
+    description: "The behavior of the switch when the top button is tapped twice"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Full brightness"
+        1: "Custom dimming level"
+        2: "Maximum dimming level"
+        3: "Disabled"
+      default: 0
+  - title: "External Switch Scene"
+    name: externalSwitchScene
+    description: "Enable or disable the scene function of the external (3-way) switch"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 1
+  - title: "External Switch Type"
+    name: externalSwitchType
+    description: "The external (3-way) switch type"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Toggle: on or off only"
+        1: "Toggle: 1x, 2x, 3x"
+        2: "Momentary: 1x, 2x, hold"
+        3: "Momentary: 1x, 2x, hold, double-tap"
+      default: 1
+  - title: "Output Control"
+    name: outputControl
+    description: "Enable or disable output"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enable local control"
+        2: "Enable scene control"
+        3: "Enable local and scene control"
+      default: 3
+  - title: "Button Behavior"
+    name: buttonBehavior
+    description: "Select the behavior of the buttons"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Normal: up -> on, down -> off"
+        1: "Reverse: down -> on, up -> off"
+        2: "Toggle: up & down behave identically"
+      default: 0
+  - title: "Report Behavior"
+    name: reportBehavior
+    description: "Select the way status changes are reported and the LED indicator behaves when the switch is off"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Report status & change LED indicator"
+        1: "Don't report status"
+      default: 0
+  - title: "Ramp Rate for Tap"
+    name: tapRampRate
+    description: "The ramp rate (seconds) for the light when the light is turned on or off with a tap (0 -> instant)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 99
+      default: 2
+  - title: "Ramp Rate for Press and Hold"
+    name: pressRampRate
+    description: "The ramp rate (seconds) for the light when a button is tapped and held"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 1
+      maximum: 99
+      default: 4
+  - title: "Minimum Dimming Level"
+    name: minimumDimLevel
+    description: "The minimum (%) dimmer level allowed (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 99
+      default: 0
+  - title: "Maximum Dimming Level"
+    name: maximumDimLevel
+    description: "The maximum (%) dimmer level allowed (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 100
+      default: 100
+  - title: "Custom Dimming Level"
+    name: customDimLevel
+    description: "A custom (%) dimmer level used with other settings (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 99
+      default: 0
+  - title: "Association Group 1: Lifeline"
+    name: assocGroup1
+    description: "Enter a comma delimited list of hex IDs to be sent general notifications (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 2: Top On / Off"
+    name: assocGroup2
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the top button is pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 3: Top Multilevel"
+    name: assocGroup3
+    description: "Enter a comma delimited list of hex IDs to be dimmed when the top button is pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 4: Bottom On / Off"
+    name: assocGroup4
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the bottom button is pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 5: Bottom Multi"
+    name: assocGroup5
+    description: "Enter a comma delimited list of hex IDs to be dimmed when the top bottom is pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 6: External On/Off"
+    name: assocGroup6
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the external switch is pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 7: External Multi"
+    name: assocGroup7
+    description: "Enter a comma delimited list of hex IDs to be turned on or off or dimmed when the external switch is pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 8: On / Off"
+    name: assocGroup8
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the top or bottom buttons are pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 9: Multilevel"
+    name: assocGroup9
+    description: "Enter a comma delimited list of hex IDs to be turned on or off or dimmed when the top and bottom buttons are pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""

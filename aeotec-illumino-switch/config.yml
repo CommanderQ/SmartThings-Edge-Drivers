@@ -1,0 +1,4 @@
+name: 'Aeotec Illumino Switch (Advanced Options)'
+packageKey: 'aeotec-illumino-switch'
+permissions:
+  zwave: {}
