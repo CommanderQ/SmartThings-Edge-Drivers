@@ -71,8 +71,10 @@ preferences:
     definition:
       options:
         0: "Disabled"
-        1: "Momentary blink"
-        2: "Follows power state"
+        1: "Always off - blink when pressed"
+        2: "Same as power state"
+        3: "Inverse of power state"
+        4: "Always on - blink when pressed"
       default: 2
   - title: "LED Brightness"
     name: ledBrightness

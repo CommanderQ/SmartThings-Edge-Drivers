@@ -18,7 +18,6 @@ local capabilities = require "st.capabilities"
 local cc = require "st.zwave.CommandClass"
 local ZwaveDriver = require "st.zwave.driver"
 local defaults = require "st.zwave.defaults"
-local log = require "log"
 --- @type st.zwave.CommandClass.Association
 local Association = (require "st.zwave.CommandClass.Association")({ version=3 })
 --- @type st.zwave.CommandClass.Basic
