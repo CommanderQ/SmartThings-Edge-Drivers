@@ -1,0 +1,8 @@
+zwaveManufacturer:
+  - id: "Aeotec/WallMote/7"
+    deviceLabel: Aeotec WallMote 7
+    manufacturerId: 0x0371
+    productType: 0x0102
+    productId: 0x0016
+    deviceProfileName: aeotec-wallmote-7
+

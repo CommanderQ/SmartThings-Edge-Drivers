@@ -1,0 +1,207 @@
+name: aeotec-wallmote-7
+components:
+  - id: main
+    capabilities:
+    - id: button
+      version: 1
+    - id: battery
+      version: 1
+    - id: refresh
+      version: 1
+    categories:
+    - name: RemoteController
+  - id: button1
+    capabilities:
+    - id: button
+      version: 1
+    categories:
+    - name: RemoteController
+  - id: button2
+    capabilities:
+    - id: button
+      version: 1
+    categories:
+    - name: RemoteController
+preferences:
+  - title: "Button Commands"
+    name: buttonCommands
+    description: "Configure the commands emitted by the button"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Group Association only"
+        1: "Central Scene only"
+        2: "Group Association and Central Scene"
+      default: 2
+  - title: "Switch Group Control"
+    name: switchGroupControl
+    description: "Select the switch association group (2, 4, 6) report type"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Basic Set"
+        1: "Binary Switch Set"
+      default: 0
+  - title: "Dimmer Group Control"
+    name: dimmerGroupControl
+    description: "Select the dimmer association group (3, 5, 7) report type"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "2x tap -> 100% or 0%"
+        2: "2x tap -> custom level or 0%"
+      default: 1
+  - title: "Custom Level"
+    name: customLevel
+    description: "A custom brightness level for Dimmer Group Control (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 99
+      default: 50
+  - title: "Low Battery Level"
+    name: lowBatteryLevel
+    description: "The level (%) at which the battery is considered low"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 5
+      maximum: 50
+      default: 20
+  - title: "Wakeup LED"
+    name: wakeupLed
+    description: "The LED state for the wakeup event"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 1
+  - title: "Communication Failure LED"
+    name: commFailureLed
+    description: "The LED state for the communication failure event"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 1
+  - title: "LED Indicator"
+    name: ledIndicator
+    description: "The state of the LED indicator"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 1
+  - title: "Top Button LED Color"
+    name: topLedColor
+    description: "The color of the LED indicator when the top button is pressed"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Red"
+        2: "Blue"
+        3: "Green"
+        4: "Pink"
+        5: "Cyan"
+        6: "Purple"
+        7: "Orange"
+        8: "Yellow"
+        9: "White"
+      default: 9
+  - title: "Bottom Button LED Color"
+    name: bottomLedColor
+    description: "The color of the LED indicator when the bottom button is pressed"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Red"
+        2: "Blue"
+        3: "Green"
+        4: "Pink"
+        5: "Cyan"
+        6: "Purple"
+        7: "Orange"
+        8: "Yellow"
+        9: "White"
+      default: 5
+  - title: "FLiRs Command"
+    name: flirsCommand
+    description: "Whether the FLiRs command is enabled"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 0
+  - title: "Association Group 1: Lifeline"
+    name: assocGroup1
+    description: "Enter a comma delimited list of hex IDs to be sent general notifications (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 2: Top On / Off"
+    name: assocGroup2
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the top button is pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 3: Top Multilevel"
+    name: assocGroup3
+    description: "Enter a comma delimited list of hex IDs to be dimmed when the top button is pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 4: Bottom On / Off"
+    name: assocGroup4
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the bottom button is pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 5: Bottom Multi"
+    name: assocGroup5
+    description: "Enter a comma delimited list of hex IDs to be dimmed when the top bottom is pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 6: On / Off"
+    name: assocGroup6
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the top or bottom buttons are pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 7: Multilevel"
+    name: assocGroup7
+    description: "Enter a comma delimited list of hex IDs to be turned on or off or dimmed when the top and bottom buttons are pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""

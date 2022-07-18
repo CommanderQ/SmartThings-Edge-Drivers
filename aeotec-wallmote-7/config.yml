@@ -1,0 +1,4 @@
+name: 'Aeotec WallMote 7 (Advanced Options)'
+packageKey: 'aeotec-wallmote-7'
+permissions:
+  zwave: {}
