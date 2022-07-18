@@ -1,4 +1,4 @@
--- Author: philh30
+-- Author: CommanderQ
 --
 -- Copyright 2021 SmartThings
 --
