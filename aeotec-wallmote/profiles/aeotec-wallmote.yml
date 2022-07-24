@@ -1,0 +1,114 @@
+name: aeotec-wallmote
+components:
+  - id: main
+    capabilities:
+    - id: button
+      version: 1
+    - id: battery
+      version: 1
+    - id: refresh
+      version: 1
+    categories:
+    - name: RemoteController
+  - id: button1
+    capabilities:
+    - id: button
+      version: 1
+    categories:
+    - name: RemoteController
+  - id: button2
+    capabilities:
+    - id: button
+      version: 1
+    categories:
+    - name: RemoteController
+preferences:
+  - title: "Touch Sound"
+    name: touchSound
+    description: "Controls whether the buttons emit a sound when touched"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 1
+  - title: "Touch Vibration"
+    name: touchVibration
+    description: "Controls whether the buttons vibrate when touched"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 1
+  - title: "Slide Control"
+    name: slideControl
+    description: "Whether the button slide controls are enabled"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 1
+  - title: "Button Report"
+    name: buttonReport
+    description: "The report sent when buttons are pressed"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        1: "Central Scence"
+        3: "Central Scene and Configuration"
+      default: 1
+  - title: "Low Battery Level"
+    name: lowBatteryLevel
+    description: "The level (%) at which the battery is considered low"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 5
+      maximum: 50
+      default: 5
+  - title: "Association Group 1: Lifeline"
+    name: assocGroup1
+    description: "Enter a comma delimited list of hex IDs to be sent general notifications (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 2: Left On / Off"
+    name: assocGroup2
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the left button is pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 3: Left Multilevel"
+    name: assocGroup3
+    description: "Enter a comma delimited list of hex IDs to be dimmed when the left button is pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 4: Right On / Off"
+    name: assocGroup4
+    description: "Enter a comma delimited list of hex IDs to be turned on or off when the right button is pressed (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 5: Right Multi"
+    name: assocGroup5
+    description: "Enter a comma delimited list of hex IDs to be dimmed when the top right is pressed or pressed and held (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""

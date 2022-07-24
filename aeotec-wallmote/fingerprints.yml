@@ -1,0 +1,25 @@
+zwaveManufacturer:
+  - id: "Aeotec/WallMote/US"
+    deviceLabel: Aeotec WallMote (US)
+    manufacturerId: 0x0086
+    productType: 0x0102
+    productId: 0x0081
+    deviceProfileName: aeotec-wallmote
+  - id: "Aeotec/WallMote/EU"
+    deviceLabel: Aeotec WallMote (EU)
+    manufacturerId: 0x0086
+    productType: 0x0002
+    productId: 0x0081
+    deviceProfileName: aeotec-wallmote
+  - id: "Aeotec/WallMote/AU"
+    deviceLabel: Aeotec WallMote (AU)
+    manufacturerId: 0x0086
+    productType: 0x0202
+    productId: 0x0081
+    deviceProfileName: aeotec-wallmote
+  - id: "Aeotec/WallMote/CN"
+    deviceLabel: Aeotec WallMote (CN)
+    manufacturerId: 0x0086
+    productType: 0x1D02
+    productId: 0x0081
+    deviceProfileName: aeotec-wallmote
