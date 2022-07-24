@@ -65,9 +65,9 @@ local function added(driver, device)
   if configs then
     for _, comp in pairs(device.profile.components) do
       if device:supports_capability_by_id(capabilities.button.ID, comp.id) then
-        local number_of_buttons = comp.id == "main" and configs.number_of_buttons or 1
+        local number_of_buttons = comp.id == "main" and configs.count or 1
         device:emit_component_event(comp, capabilities.button.numberOfButtons({ value=number_of_buttons }))
-        device:emit_component_event(comp, capabilities.button.supportedButtonValues(configs.supported_button_values))
+        device:emit_component_event(comp, capabilities.button.supportedButtonValues(configs.values))
       end
     end
   end
