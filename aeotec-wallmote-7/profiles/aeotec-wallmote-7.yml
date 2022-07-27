@@ -1,6 +1,7 @@
 name: aeotec-wallmote-7
 components:
   - id: main
+    label: "Buttons"
     capabilities:
     - id: button
       version: 1
@@ -11,12 +12,14 @@ components:
     categories:
     - name: RemoteController
   - id: button1
+    label: "Top Button"
     capabilities:
     - id: button
       version: 1
     categories:
     - name: RemoteController
   - id: button2
+    label: "Bottom Button"
     capabilities:
     - id: button
       version: 1
