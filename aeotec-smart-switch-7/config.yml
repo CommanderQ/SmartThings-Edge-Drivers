@@ -1,0 +1,4 @@
+name: 'Aeotec Smart Switch 7 (Advanced Options)'
+packageKey: 'aeotec-smart-switch-7'
+permissions:
+  zwave: {}

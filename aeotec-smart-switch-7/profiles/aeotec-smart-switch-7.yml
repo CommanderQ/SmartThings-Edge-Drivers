@@ -1,0 +1,253 @@
+name: aeotec-smart-switch-7
+components:
+- id: main
+  label: "Switch"
+  capabilities:
+  - id: switch
+    version: 1
+  - id: powerMeter
+    version: 1
+  - id: energyMeter
+    version: 1
+  - id: refresh
+    version: 1
+  categories:
+  - name: Switch
+- id: switch2
+  label: "Indicator Light"
+  capabilities:
+  - id: switchLevel
+    version: 1
+  - id: colorControl
+    version: 1
+  categories:
+  - name: Light
+preferences:
+  - title: "Indicator LED Mode"
+    name: ledMode
+    description: "The behavior of the indicator LED"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Night Light"
+        2: "On / Off"
+      default: 2
+  - title: "Night Light On Time"
+    name: nightLightOn
+    description: "The time at which the night light is turned on, in the format 0x00HHMMSS"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: "0x00180000"
+  - title: "Night Light Off Time"
+    name: nightLightOff
+    description: "The time at which the night light is turned off, in the format 0x00HHMMSS"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: "0x00060000"
+  - title: "Indicator LED Blink Duration"
+    name: ledBlinkDuration
+    description: "The duration (s) of blinks of the LED (0 -> no blinking)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 255
+      default: 0
+  - title: "Indicator LED Blink Speed"
+    name: ledBlinkSpeed
+    description: "The number of blinks of the LED per second"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 1
+      maximum: 24
+      default: 5
+  - title: "Output Alert Threshold"
+    name: alertThreshold
+    description: "Sends a Scene Activation Set command when the energy draw (W) meets or exceeds a set level (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 3000
+      default: 100
+  - title: "Always On Mode"
+    name: alwaysOnMode
+    description: "Restricts if or how the swtich may be turned off"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Normal on / off"
+        1: "Network only / button disabled"
+        2: "Always on"
+      default: 0
+  - title: "Power Restore"
+    name: powerRestore
+    description: "The state of the switch after a power failure"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Previous state"
+        1: "On"
+        2: "Off"
+      default: 0
+  - title: "Association Group 3 Scene ID"
+    name: group3SceneId
+    description: "The ID of the scene sent with Association Group 3 notifications"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 1
+      maximum: 255
+      default: 255
+  - title: "Overload Protection Threshold"
+    name: overloadThreshold
+    description: "Turns off the switch when the output (W) exceeds the set level (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 1800
+      default: 1800
+  - title: "Overvoltage Protection Threshold"
+    name: overvoltageThreshold
+    description: "Turns off the switch when the input voltage (V) exceeds the set level (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 255
+      default: 135
+  - title: "Voltage Reporting Period"
+    name: voltagePeriod
+    description: "The time (s) between regular voltage reports"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 65535
+      default: 600
+  - title: "Threshold Check Period"
+    name: thresholdPeriod
+    description: "The frequency (s) at which the various reporting thresholds are checked (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 255
+      default: 5
+  - title: "Energy Reporting Threshold"
+    name: energyThreshold
+    description: "The threshold above which energy (kWh) is no longer reported"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 10000
+      default: 100
+  - title: "Energy Reporting Period"
+    name: energyPeriod
+    description: "The time (s) between regular energy usage reports"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 65535
+      default: 600
+  - title: "Power Reporting Threshold"
+    name: powerThreshold
+    description: "The minimum power (W) level that is reported"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 2500
+      default: 0
+  - title: "Power Reporting Period"
+    name: powerPeriod
+    description: "The time (s) between regular power usage reports"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 65535
+      default: 600
+  - title: "Current Reporting Threshold"
+    name: currentThreshold
+    description: "The minimum current (A) level that is reported"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 150
+      default: 0
+  - title: "Current Reporting Period"
+    name: currentPeriod
+    description: "The time (s) between regular current usage reports"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 65535
+      default: 600
+  - title: "Auto-off"
+    name: autoOff
+    description: "Automatically turns off the switch after it has been turned on for a set amount of time (s) (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 86400
+      default: 0
+  - title: "Auto-on"
+    name: autoOn
+    description: "Automatically turns on the switch after it has been turned off for a set amount of time (s) (0 -> disabled)"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 86400
+      default: 0
+  - title: "Reporting Behavior"
+    name: reportingBehavior
+    description: "The information reported to the lifeline association group when the switch state changes"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Nothing"
+        1: "Basic report"
+        2: "Binary switch report"
+      default: 2
+  - title: "Association Group 1: Lifeline"
+    name: assocGroup1
+    description: "Enter a comma delimited list of hex IDs to be sent general notifications (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 2: Retransmit"
+    name: assocGroup2
+    description: "Enter a comma delimited list of hex IDs to be sent general notifications (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 3: Alert"
+    name: assocGroup3
+    description: "Enter a comma delimited list of hex IDs to be sent general notifications (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""

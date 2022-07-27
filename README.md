@@ -4,6 +4,7 @@ A small set of SmartThings Edge device drivers for Aeotec z-wave devices that pr
 # Devices
 * [Aeotec Illumino Dimmer](https://aeotec.com/products/aeotec-dimmer-switch/) (ZWA037-A)
 * [Aeotec Illumino Switch](https://aeotec.com/products/aeotec-wall-switch/) (ZWA038-A)
+* [Aeotec Smart Switch 7](https://aeotec.com/products/aeotec-smart-switch-7/) (ZWA023-A)
 * [Aeotec WallMote 7](https://aeotec.com/products/aeotec-wallmote-7/) (ZWA022-A)
 * [Aeotec WallMote (Duo)](https://aeotec.freshdesk.com/support/solutions/articles/6000176572-wallmote-user-guide-) (ZW129)
 
