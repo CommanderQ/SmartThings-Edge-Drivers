@@ -15,8 +15,8 @@
 local SWITCH = {
   PARAMETERS = {
     ledMode              = { type = 'config', parameter_number = 1, size = 1 },
-    nightLightOn              = { type = 'config', parameter_number = 2, size = 4 },
-    nightLightOff              = { type = 'config', parameter_number = 3, size = 4 },
+    nightLightOn         = { type = 'config', parameter_number = 2, size = 4 },
+    nightLightOff        = { type = 'config', parameter_number = 3, size = 4 },
     ledBlinkDuration     = { type = 'config', parameter_number = 4, size = 1 },
     ledBlinkSpeed        = { type = 'config', parameter_number = 5, size = 1 },
     alertThreshold       = { type = 'config', parameter_number = 6, size = 2 },
@@ -50,7 +50,7 @@ local devices = {
       product_types = 0x0103,
       product_ids = 0x0017
     },
-    PARAMETERS = SWITCH
+    PARAMETERS = SWITCH.PARAMETERS
   }
 }
 
