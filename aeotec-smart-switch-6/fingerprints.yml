@@ -1,0 +1,25 @@
+zwaveManufacturer:
+  - id: "Aeotec/Smart Switch/6/US"
+    deviceLabel: Aeotec Smart Switch 6 (US)
+    manufacturerId: 0x0086
+    productType: 0x0103
+    productId: 0x0060
+    deviceProfileName: aeotec-smart-switch-6
+  - id: "Aeotec/Smart Switch/6/EU"
+    deviceLabel: Aeotec Smart Switch 6 (EU)
+    manufacturerId: 0x0086
+    productType: 0x0003
+    productId: 0x0060
+    deviceProfileName: aeotec-smart-switch-6
+  - id: "Aeotec/Smart Switch/6/AU"
+    deviceLabel: Aeotec Smart Switch 6 (AU)
+    manufacturerId: 0x0086
+    productType: 0x0203
+    productId: 0x0060
+    deviceProfileName: aeotec-smart-switch-6
+  - id: "Aeotec/Smart Switch/6/CN"
+    deviceLabel: Aeotec Smart Switch 6 (CN)
+    manufacturerId: 0x016A
+    productType: 0x1D03
+    productId: 0x0060
+    deviceProfileName: aeotec-smart-switch-6

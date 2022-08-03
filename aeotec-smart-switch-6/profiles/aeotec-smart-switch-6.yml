@@ -1,0 +1,107 @@
+name: aeotec-smart-switch-6
+components:
+- id: main
+  label: "Switch"
+  capabilities:
+  - id: switch
+    version: 1
+  - id: powerMeter
+    version: 1
+  - id: energyMeter
+    version: 1
+  - id: switchLevel
+    version: 1
+  - id: colorControl
+    version: 1
+  - id: refresh
+    version: 1
+  categories:
+  - name: Switch
+preferences:
+  - title: "Current Overload Protection"
+    name: overloadProtection
+    description: "Automatically turn off the switch if the current draw exceeds the maximum allowance for 2 minutes"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 1
+  - title: "Power Restore"
+    name: powerRestore
+    description: "The state of the switch after a power failure"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Previous state"
+        1: "On"
+        2: "Off"
+      default: 0
+  - title: "Association Group 1 Notification"
+    name: assoc1Notification
+    description: "The notification sent to devices in association group 1"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Nothing"
+        1: "Hail"
+        2: "Basic Report"
+      default: 0
+  - title: "Indicator LED Mode"
+    name: ledMode
+    description: "The behavior of the indicator LED"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "On / Off"
+        1: "Momentary"
+        2: "Night Light"
+      default: 0
+  - title: "Minimum Power Reporting Threshold"
+    name: powerReportingThreshold
+    description: "Whether the minimum power reporting thresholds (configured separately) are applied"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Disabled"
+        1: "Enabled"
+      default: 0
+  - title: "Minimum Power Threshold (W)"
+    name: minimumPowerWatts
+    description: "The minimum change in power (W) required to trigger a power report"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 60000
+      default: 25
+  - title: "Minimum Power Threshold (%)"
+    name: minimumPowerPercent
+    description: "The minimum change in power (%) required to trigger a power report"
+    required: true
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 100
+      default: 5
+  - title: "Association Group 1: Configured"
+    name: assocGroup1
+    description: "Enter a comma delimited list of hex IDs to be sent the configured notification (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
+  - title: "Association Group 2: Switch"
+    name: assocGroup2
+    description: "Enter a comma delimited list of hex IDs to be sent switch notifications (5 node max)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: ""
