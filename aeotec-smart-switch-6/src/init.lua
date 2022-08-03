@@ -23,12 +23,6 @@ local Association = (require "st.zwave.CommandClass.Association")({ version=3 })
 local Configuration = (require "st.zwave.CommandClass.Configuration")({ version=4 })
 local preferencesMap = require "preferences"
 local splitAssocString = require "split_assoc_string"
---- @type st.zwave.CommandClass.SwitchColor
-local SwitchColor = (require "st.zwave.CommandClass.SwitchColor")({ version = 3 })
---- @type st.zwave.constants
-local constants = require "st.zwave.constants"
-local utils = require "st.utils"
-
 
 local function device_added(driver, device)
   device:refresh()
@@ -74,34 +68,6 @@ local function do_configure(driver, device)
   update_preferences(driver, device)
 end
 
---- A custom handler for setting the color.
---- The default setColor handler implementation sends along a duration of 1;
---- the Smart Switch doesn't seem to respond well to a duration value other than 0 (or unspecified).
---- This is a simple replacement implementation that removes the non-zero duration.
---- @param driver st.zwave.Driver
---- @param device st.zwave.Device
-local function set_color(driver, device, command)
-  local r, g, b = utils.hsl_to_rgb(command.args.color.hue, command.args.color.saturation)
-  local set = SwitchColor:Set({
-    color_components = {
-      { color_component_id=SwitchColor.color_component_id.RED, value=r },
-      { color_component_id=SwitchColor.color_component_id.GREEN, value=g },
-      { color_component_id=SwitchColor.color_component_id.BLUE, value=b }
-    }
-  })
-  device:send_to_component(set, command.component)
-  local query_color = function()
-    -- Use a single RGB color key to trigger our callback to emit a color
-    -- control capability update.
-    device:send_to_component(
-      SwitchColor:Get({ color_component_id=SwitchColor.color_component_id.RED }),
-      command.component
-    )
-  end
-  device.thread:call_with_delay(constants.DEFAULT_GET_STATUS_DELAY, query_color)
-end
-
-
 local driver_template = {
   supported_capabilities = {
     capabilities.switch,
@@ -109,11 +75,6 @@ local driver_template = {
     capabilities.energyMeter,
     capabilities.powerMeter,
     capabilities.colorControl,
-  },
-  capability_handlers = {
-    [capabilities.colorControl.ID] = {
-      --[capabilities.colorControl.commands.setColor.NAME] = set_color
-    },
   },
   lifecycle_handlers = {
     infoChanged = info_changed,
