@@ -89,6 +89,13 @@ preferences:
       minimum: 0
       maximum: 100
       default: 5
+  - title: "Only Physical Switch Control"
+    name: physicalSwitchControlOnly
+    description: "Disables remote control of the switch state, requiring physical button presses to toggle state"
+    required: true
+    preferenceType: boolean
+    definition:
+      default: false
   - title: "Association Group 1: Configured"
     name: assocGroup1
     description: "Enter a comma delimited list of hex IDs to be sent the configured notification (5 node max)"

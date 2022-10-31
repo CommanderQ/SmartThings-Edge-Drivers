@@ -15,12 +15,17 @@
 -- limitations under the License.
 
 local capabilities = require "st.capabilities"
+local log = require "log"
 local ZwaveDriver = require "st.zwave.driver"
 local defaults = require "st.zwave.defaults"
 --- @type st.zwave.CommandClass.Association
 local Association = (require "st.zwave.CommandClass.Association")({ version=3 })
 --- @type st.zwave.CommandClass.Configuration
 local Configuration = (require "st.zwave.CommandClass.Configuration")({ version=4 })
+--- @type st.zwave.CommandClass.SwitchBinary
+local SwitchBinary = (require "st.zwave.CommandClass.SwitchBinary")({version=2,strict=true})
+--- @type st.zwave.constants
+local constants = require "st.zwave.constants"
 local preferencesMap = require "preferences"
 local splitAssocString = require "split_assoc_string"
 
@@ -68,6 +73,57 @@ local function do_configure(driver, device)
   update_preferences(driver, device)
 end
 
+--- Interrogate the device's supported command classes to determine whether a
+--- BASIC, SWITCH_BINARY or SWITCH_MULTILEVEL set should be issued to fulfill
+--- the on/off capability command.
+--- Based upon lua_libs-api_v1\st\zwave\defaults\switch.lua
+---
+--- @param driver st.zwave.Driver
+--- @param device st.zwave.Device
+--- @param value number st.zwave.CommandClass.SwitchBinary.value.OFF_DISABLE or st.zwave.CommandClass.SwitchBinary.value.ON_ENABLE
+--- @param command table The capability command table
+local function switch_set_helper(driver, device, value, command)
+
+  if (device.preferences.physicalSwitchControlOnly) then
+    log.trace_with({ hub_logs = true}, "Switch has been configured with physicalSwitchContolOnly enabled - ignoring switch change command")
+  else
+    local set
+    local get
+    local delay = constants.DEFAULT_GET_STATUS_DELAY
+    set = SwitchBinary:Set({
+      target_value = value,
+      duration = 0
+    })
+    get = SwitchBinary:Get({})
+    device:send_to_component(set, command.component)
+    local query_device = function()
+      device:send_to_component(get, command.component)
+    end
+    device.thread:call_with_delay(delay, query_device)
+  end
+
+end
+
+--- Issue a switch-on command to the specified device.
+--- Copied from lua_libs-api_v1\st\zwave\defaults\switch.lua
+---
+--- @param driver st.zwave.Driver
+--- @param device st.zwave.Device
+--- @param command table The capability command table
+function switch_on_handler(driver, device, command)
+  switch_set_helper(driver, device, SwitchBinary.value.ON_ENABLE, command)
+end
+
+--- Issue a switch-off command to the specified device.
+--- Copied from lua_libs-api_v1\st\zwave\defaults\switch.lua
+---
+--- @param driver st.zwave.Driver
+--- @param device st.zwave.Device
+--- @param command table The capability command table
+function switch_off_handler(driver, device, command)
+  switch_set_helper(driver, device, SwitchBinary.value.OFF_DISABLE, command)
+end
+
 local driver_template = {
   supported_capabilities = {
     capabilities.switch,
@@ -80,6 +136,10 @@ local driver_template = {
     infoChanged = info_changed,
     doConfigure = do_configure,
     added = device_added
+  },
+  capability_handlers = {
+    [capabilities.switch.commands.on] = switch_on_handler,
+    [capabilities.switch.commands.off] = switch_off_handler
   },
   NAME = "Aeotec Smart Switch 6",
 }

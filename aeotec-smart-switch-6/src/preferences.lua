@@ -14,15 +14,16 @@
 
 local SWITCH = {
   PARAMETERS = {
-    overloadProtection      = { type = 'config', parameter_number = 3, size = 1 },
-    powerRestore            = { type = 'config', parameter_number = 20, size = 1 },
-    assoc1Notification      = { type = 'config', parameter_number = 80, size = 1 },
-    ledMode                 = { type = 'config', parameter_number = 81, size = 1 },
-    powerReportingThreshold = { type = 'config', parameter_number = 90, size = 1 },
-    minimumPowerWatts       = { type = 'config', parameter_number = 91, size = 2 },
-    minimumPowerPercent     = { type = 'config', parameter_number = 92, size = 1 },
-    assocGroup1             = { type = 'assoc', group = 1, maxnodes = 5, addhub = false },
-    assocGroup2             = { type = 'assoc', group = 2, maxnodes = 5, addhub = false },
+    overloadProtection        = { type = 'config', parameter_number = 3, size = 1 },
+    powerRestore              = { type = 'config', parameter_number = 20, size = 1 },
+    assoc1Notification        = { type = 'config', parameter_number = 80, size = 1 },
+    ledMode                   = { type = 'config', parameter_number = 81, size = 1 },
+    powerReportingThreshold   = { type = 'config', parameter_number = 90, size = 1 },
+    minimumPowerWatts         = { type = 'config', parameter_number = 91, size = 2 },
+    minimumPowerPercent       = { type = 'config', parameter_number = 92, size = 1 },
+    assocGroup1               = { type = 'assoc', group = 1, maxnodes = 5, addhub = false },
+    assocGroup2               = { type = 'assoc', group = 2, maxnodes = 5, addhub = false },
+    physicalSwitchControlOnly = { type = 'virtual' },
   }
 }
 
