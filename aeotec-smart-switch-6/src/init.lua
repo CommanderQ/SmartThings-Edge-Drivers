@@ -84,8 +84,8 @@ end
 --- @param command table The capability command table
 local function switch_set_helper(driver, device, value, command)
 
-  if (device.preferences.physicalSwitchControlOnly) then
-    log.trace_with({ hub_logs = true}, "Switch has been configured with physicalSwitchContolOnly enabled - ignoring switch change command")
+  if (device.preferences.alwaysOnMode == 1) then
+    log.trace_with({ hub_logs = true}, "Switch has been configured with button-only switch control - ignoring switch change command")
   else
     local set
     local get
