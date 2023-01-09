@@ -44,6 +44,7 @@ local DIMMER = {
     assocGroup7         = { type = 'assoc', group = 7, maxnodes = 5, addhub = false },
     assocGroup8         = { type = 'assoc', group = 8, maxnodes = 5, addhub = false },
     assocGroup9         = { type = 'assoc', group = 9, maxnodes = 5, addhub = false },
+    lock                = { type = 'config', parameter_number = 252, size = 1 }
   },
   BUTTONS = {
     count = 1,
@@ -71,7 +72,8 @@ local SWITCH = {
     assocGroup2         = { type = 'assoc', group = 2, maxnodes = 5, addhub = false },
     assocGroup3         = { type = 'assoc', group = 3, maxnodes = 5, addhub = false },
     assocGroup4         = { type = 'assoc', group = 4, maxnodes = 5, addhub = false },
-    assocGroup5         = { type = 'assoc', group = 5, maxnodes = 5, addhub = false }
+    assocGroup5         = { type = 'assoc', group = 5, maxnodes = 5, addhub = false },
+    lock                = { type = 'config', parameter_number = 252, size = 1 }
   },
   BUTTONS = {
     count = 1,

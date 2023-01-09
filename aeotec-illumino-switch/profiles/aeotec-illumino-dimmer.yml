@@ -8,6 +8,8 @@ components:
     version: 1
   - id: refresh
     version: 1
+  - id: button
+    version: 1
   categories:
   - name: Switch
 metadata:
@@ -319,3 +321,13 @@ preferences:
     definition:
       stringType: text
       default: ""
+  - title: "Lock external controls"
+    name: lock
+    description: "Sets a lock on changing parameter settings via the physical switch"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        0: "Lock disabled"
+        1: "Lock enabled"
+      default: 0
