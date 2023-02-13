@@ -23,7 +23,6 @@ local SWITCH = {
     minimumPowerPercent     = { type = 'config', parameter_number = 92, size = 1 },
     assocGroup1             = { type = 'assoc', group = 1, maxnodes = 5, addhub = false },
     assocGroup2             = { type = 'assoc', group = 2, maxnodes = 5, addhub = false },
-    alwaysOnMode            = { type = 'virtual' },
   }
 }
 
