@@ -27,6 +27,8 @@ local splitAssocString = require "split_assoc_string"
 local SwitchColor = (require "st.zwave.CommandClass.SwitchColor")({ version = 3 })
 --- @type st.zwave.constants
 local constants = require "st.zwave.constants"
+local Basic = (require "st.zwave.CommandClass.Basic")({ version=2 })
+local SwitchBinary = (require "st.zwave.CommandClass.SwitchBinary")({ version=2 })
 local utils = require "st.utils"
 
 --- Map component to end_points(channels)
@@ -133,6 +135,17 @@ local function set_color(driver, device, command)
   device.thread:call_with_delay(constants.DEFAULT_GET_STATUS_DELAY, query_color)
 end
 
+-- The Smart Switch 7 supports both the basic switch and the multi-level commands.
+-- However, the switch itself is only controlled by the on/off command
+-- while the multi-level commands control the indicator light.
+-- As of the April 10, 2023 update, the SmartThings default handler will prefer the multi-level
+-- control when turning the device on or off, so we need to use a specific handler for on / off commands.
+local function on_off_factory(onOff)
+  return function(driver, device, cmd)
+    device:send(Basic:Set({value=onOff}))
+    device.thread:call_with_delay(constants.DEFAULT_GET_STATUS_DELAY, function() device:send(SwitchBinary:Get({})) end)
+  end
+end
 
 local driver_template = {
   supported_capabilities = {
@@ -146,6 +159,10 @@ local driver_template = {
     [capabilities.colorControl.ID] = {
       [capabilities.colorControl.commands.setColor.NAME] = set_color
     },
+    [capabilities.switch.ID] = {
+      [capabilities.switch.commands.on.NAME] = on_off_factory(SwitchBinary.value.ON_ENABLE),
+      [capabilities.switch.commands.off.NAME] = on_off_factory(SwitchBinary.value.OFF_DISABLE)
+    }
   },
   lifecycle_handlers = {
     init = device_init,
